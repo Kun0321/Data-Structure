@@ -43,6 +43,7 @@ class LinkedList{
     
     public:
         LinkedList():first(nullptr),last(nullptr){};
+
         void InsertFirst(int x){
             ListNode *newlink = new ListNode(x);
             if(first == nullptr){
@@ -79,6 +80,7 @@ class LinkedList{
 
             return deletedDate;
         }
+
         int DeleteLast() {
             if (last == nullptr)
                 return -1;
@@ -119,9 +121,11 @@ class Queue {
         void Enqueue(int x) {
             list.InsertLast(x);
         }
+
         int Dequeue() {
             list.DeleteFirst();
         }
+
         void PrintQueue() {
             list.PrintList();
         }
