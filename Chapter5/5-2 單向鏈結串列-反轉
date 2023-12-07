@@ -1,0 +1,93 @@
+/*
+基於題目5-1所寫的LinkedList類別，再添加void Reverse()函式，可以對鏈結串列進行反轉，將ListNode的link方向前後對調。
+
+注意：預設程式中main函式請勿修改，僅可加上函式定義與函式原型。
+
+系統輸入：
+第一個值為InsertFirst()執行次數，後面接著要傳入函式的參數
+
+結果輸出：
+第一行，Reverse()執行前，PrintList()的執行結果
+第二行，Reverse()執行後，PrintList()的執行結果
+
+
+
+輸入範例：
+5 10 20 30 40 50
+
+輸出範例：
+50 40 30 20 10
+10 20 30 40 50
+*/
+#include <iostream>
+using namespace std;
+
+class ListNode{
+    private:
+        int date;
+        ListNode *link;
+        friend class LinkedList;
+
+    public:
+    ListNode(int x){
+        date = x;
+        link = 0;
+    }
+};
+
+class LinkedList{
+    private:
+        ListNode *first;
+        ListNode *last;
+
+    public:
+    LinkedList():first(nullptr), last(nullptr){}
+
+    void InsertFirst(int x){
+        ListNode *newlink = new ListNode(x);
+        if(first == nullptr){
+            first = newlink;
+            last = newlink;
+        }else{
+            newlink->link = first;
+            first = newlink;
+        }
+    }
+// http://alrightchiu.github.io/SecondRound/linked-list-xin-zeng-zi-liao-shan-chu-zi-liao-fan-zhuan.html#reverse
+    void Reverse(){
+        ListNode *current = first;
+        ListNode *previous = nullptr;
+        ListNode *next = first->link;
+
+        while(next != nullptr){
+            current->link = previous;
+            previous = current;
+            current = next;
+            next = next->link;
+        }
+
+        current->link = previous;
+        first = current;
+    }
+
+    void PrintList(){
+        ListNode *temp = first;
+        while(temp!=nullptr){
+            cout<<temp->date<<" ";
+            temp = temp->link;
+        }
+        cout<<endl;
+    }
+};
+
+int main(int argc, char* argv[]) {
+    LinkedList list;
+    int times, input;
+    for (cin >> times; times > 0; times--) {
+        cin >> input;
+        list.InsertFirst(input);
+    }
+    list.PrintList();
+    list.Reverse();
+    list.PrintList();
+}
