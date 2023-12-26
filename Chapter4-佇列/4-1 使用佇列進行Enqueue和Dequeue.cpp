@@ -21,12 +21,12 @@ rear和front初始值為-1。Enqueue(int x)可將變數x加入到佇列後面，
 using namespace std;
 
 class Queue{
-private:
-    int arr[10];
-    int rear;   //加
-    int front;  //刪
+    private:
+        int arr[10];
+        int rear;   //加
+        int front;  //刪
 
-public:
+    public:
     //初始化
     Queue():rear(-1), front(-1){}
     
@@ -58,6 +58,6 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < times; i++) {
         queue.Dequeue();
     }
-    
+
     queue.PrintQueue();
 }
